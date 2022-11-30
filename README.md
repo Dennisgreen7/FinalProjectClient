@@ -1,4 +1,4 @@
-Client side:
+Client side Angular 14:
 the windows that are in the client side:
 Home section has the welcome of the user and explains in 3 steps how to borrow with a redirection to the books.
 and shows 3 books.
