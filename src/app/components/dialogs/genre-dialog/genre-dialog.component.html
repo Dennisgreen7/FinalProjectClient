@@ -1,0 +1,19 @@
+<form class="example-form" [formGroup]="genreForm" (ngSubmit)="saveGenre()">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="ID" formControlName="genreId">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="genreName">
+        <mat-error *ngIf="genreForm.get('genreName')?.hasError('required')">*Genre name is required.</mat-error>
+        <mat-error *ngIf="genreForm.get('genreName')?.hasError('pattern')">*Genre name must start with Upper Case and be
+            alphabet.
+        </mat-error>
+    </mat-form-field>
+    <div mat-dialog-action [align]="'center'" class="mt-5">
+        <button mat-raised-button color="primary">Save</button>
+        <button type="button" class="ms-4" mat-raised-button color="accent" (click)="closeDialog()">Close</button>
+    </div>
+</form>

@@ -1,0 +1,77 @@
+<form class="example-form" [formGroup]="bookForm" (ngSubmit)="saveBook()">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="ID" formControlName="bookId">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="bookName">
+        <mat-error>*Book name is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea type="text" matInput placeholder="Description" formControlName="bookAbout"></textarea>
+        <mat-error>*Description is required.</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Author</mat-label>
+        <mat-select formControlName="authorId" placeholder="Author">
+            <mat-option *ngFor="let author of authrosDb?.data" [value]="author.authorId">{{author.authorName}}
+            </mat-option>
+        </mat-select>
+        <mat-error>*Authour is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Year</mat-label>
+        <input type="number" min="1900" max={{currentYear}} matInput placeholder="Year"
+            formControlName="bookPublishedYear">
+        <mat-error *ngIf="bookForm.get('bookPublishedYear')?.hasError('required')">*Year is required.</mat-error>
+        <mat-error
+            *ngIf="bookForm.get('bookPublishedYear')?.hasError('min')||bookForm.get('bookPublishedYear')?.hasError('max')">
+            *Year is must be between
+            1900-{{currentYear}}.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="genreId" placeholder="Genre">
+            <mat-option *ngFor="let genre of genreDb?.data" [value]="genre.genreId">{{genre.genreName}}</mat-option>
+        </mat-select>
+        <mat-error>*Genre is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Language</mat-label>
+        <input matInput placeholder="Language" formControlName="bookLanguage">
+        <mat-error *ngIf="bookForm.get('bookLanguage')?.hasError('required')">*Language is required.</mat-error>
+        <mat-error *ngIf="bookForm.get('bookLanguage')?.hasError('pattern')">*Language must start with Upper Case.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Pages</mat-label>
+        <input type="number" min="1" matInput placeholder="Pages" formControlName="bookNumOfPages">
+        <mat-error *ngIf="bookForm.get('bookNumOfPages')?.hasError('required')">*Pages is required.</mat-error>
+        <mat-error *ngIf="bookForm.get('bookNumOfPages')?.hasError('min')">*Pages cannot be less then 0.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Copys</mat-label>
+        <input type="number" min="0" matInput placeholder="Copys" formControlName="bookCopys">
+        <mat-error *ngIf="bookForm.get('bookCopys')?.hasError('required')">*Copys is required.</mat-error>
+        <mat-error *ngIf="bookForm.get('bookCopys')?.hasError('min')">*Copys cannot be less then 0.
+        </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-action [align]="'center'">
+        <button mat-raised-button color="primary">Save</button>
+        <button type="button" class="ms-4" mat-raised-button color="accent" (click)="closeDialog()">Close</button>
+    </div>
+</form>

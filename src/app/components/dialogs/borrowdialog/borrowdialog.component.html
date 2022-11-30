@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td align="center">
+                    <img src="{{this.data.book?.imageSrc}}" class="img-thumbnail img-fluid mb-2" alt="{{this.data.book?.bookName}}"
+                        width="150" height="150">
+                </td>
+            </tr>
+           <tr>
+                <th class="text-center">
+                    <h2>Details</h2>
+                </th>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">
+                    {{this.data.book?.bookName}} will be borrowed for 14 days.
+                </td>
+            </tr>
+        </table>
+        <div mat-dialog-action [align]="'center'" class="buttonCont mt-3">
+            <button class="btn btn-secondary" (click)=" borrowBook()">Borrow</button>
+            <button class="ms-4 btn btn-dark" (click)=" closeDialog()">Close</button>
+        </div>
+    </div>
+</div>

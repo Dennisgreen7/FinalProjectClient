@@ -1,0 +1,58 @@
+<app-nav-bar [activeUser]="activeUser"></app-nav-bar>
+<div class="row">
+    <div class="col-12">
+        <table>
+            <tr>
+                <td align="left">
+                    <h1 class="fst-italic" [style.color]="headerColor">Genres</h1>
+                </td>
+                <td align="right"><button class="btn btn-outline-light float-end mb-2" (click)="openDialog('')">Add New
+                        Genre</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="mat-elevation-z8">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput placeholder="Filter" (keyup)="filterChange($event)">
+            </mat-form-field>
+            <mat-table matSort [dataSource]="dataSource">
+
+                <ng-container matColumnDef="genreId">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> Id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.genreId}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="genreName">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.genreName}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="primary" [matTooltip]="'Edit'" [matTooltipPosition]="'above'"
+                            (click)="editGenre(element.genreId)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" [matTooltip]="'Delete'" [matTooltipPosition]="'above'"
+                            (click)="removeGenre(element.genreId)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+
+            </mat-paginator>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

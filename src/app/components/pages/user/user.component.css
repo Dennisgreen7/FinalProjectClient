@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 16%;
+}
+
+mat-form-field {
+  background-color: white;
+}
+
+.row {
+  padding-bottom: 50px;
+}
+
+app-footer {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+}

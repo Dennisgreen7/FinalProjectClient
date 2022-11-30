@@ -1,5 +1,11 @@
 export class Borrow {
-    authorId?: number;
-    authorName: string = "";
-    authorCountry: string = "";
+    borrowingId?: number;
+    borrowingBookId?: number;
+    borrowingUserId?: number;
+    borrowingDate?: Date = new Date();
+    borrowingReturnDate: Date = new Date();
+    borrowingReturnedDate?: Date = new Date();
+    userName?: string = "";
+    bookName?: string = "";
+    daysLeft?: number = 0;
 }

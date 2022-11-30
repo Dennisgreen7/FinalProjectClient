@@ -1,0 +1,56 @@
+.choosen {
+    color: white;
+}
+
+.navbar {
+    z-index: 1;
+}
+
+#welcome {
+    color: white;
+    font-weight: bold;
+    width: 230px;
+}
+
+.dropdown {
+    position: block;
+    display: inline-block;
+    color: rgba(255,255,255,0.55);
+    line-height: 36px;
+    font-size: 14x;
+    cursor: pointer;
+    font-family: roboto, "Helvetica Neue",sans serif;
+    font-weight: 400px;
+}
+.dropdown:hover {
+   color:rgb(205, 201, 201);
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    border: 1px solid white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-nav-item{
+    border-bottom: 1px solid white;
+}
+
+.dropdown-nav-item:hover{
+    background-color: rgb(67, 67, 67);
+}
+
+.btn-login{
+    background-color:orange;
+    color: black;
+}
+.btn-login:hover{
+    background-color:darkorange;
+    color: white;
+}

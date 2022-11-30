@@ -1,0 +1,49 @@
+<app-nav-bar [activeUser]="activeUser?.result.data"></app-nav-bar>
+<div class="container">
+    <h1 class="text-center" [style.color]="headerColor">Books</h1>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <table cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td>
+                        <select #selectedFilter (change)="onSelectedFilter(selectedFilter.value)" class="form-select" aria-label="Default select example">
+                            <option selected>Filter by</option>
+                            <option value="1">Name</option>
+                            <option value="2">Genre</option>
+                            <option value="3">Year</option>
+                            <option value="4">Pages</option>
+                            <option value="5">Language</option>
+                            <option value="6">Author</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input #searchValue (input)="onSelectedSearchValue(searchValue.value)" type="text" class="form-control" placeholder="Search">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" (click)="filterBook()">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div *ngFor="let book of books?.data | paginate:{itemsPerPage:12,currentPage:page,totalItems:totalLength}"
+            class="card col-lg-3 text-center mt-2 mb-2 ms-2 p2">
+            <img src="{{book.imageSrc}}" class="mx-auto d-block mt-2" alt="{{book.bookName}}" height="180px"
+                width="130px">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="height:30px;">{{book.bookName}}</h5>
+                <div mat-dialog-action [align]="'center'" class="buttonCont">
+                    <button class="btn btn-light" (click)="bookInfo(book.bookId,activeUser?.result.data.usersId)">Info</button>
+                    <button class="ms-4 btn btn-dark" (click)="borrowBook(book,activeUser?.result.data.usersId)">Borrow</button>
+                </div>
+            </div>
+        </div>
+        <pagination-controls class="my-pagination text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
+<app-footer></app-footer>

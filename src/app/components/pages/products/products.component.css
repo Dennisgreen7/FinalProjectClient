@@ -1,0 +1,45 @@
+.card {
+    width: 200px;
+    height: 300px;
+    background-color: lightgrey;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: black;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+button {
+    height: 35px;
+}
+
+.buttonCont {
+    vertical-align: bottom;
+    height: 40px;
+    width: 156px;
+    padding-top: 10px;
+}
+
+.form-select,
+.btn-secondary,
+.form-control {
+    border-radius: 0;
+}
+
+.btn-secondary {
+    height: 38px;
+}
+
+app-footer {
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+}
+
+.container{
+    padding-bottom: 30px;
+}

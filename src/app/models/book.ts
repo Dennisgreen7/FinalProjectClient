@@ -9,4 +9,6 @@ export class Book {
     bookCopys?: number;
     authorName: string = "";
     genreName: string = "";
+    imageSrc:string ="";
+    bookAbout:string ="";
 }

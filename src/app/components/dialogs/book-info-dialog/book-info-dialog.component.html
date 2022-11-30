@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td align="center">
+                    <img src="{{book?.data.imageSrc}}" class="img-thumbnail img-fluid mb-2" alt="{{book?.data.bookName}}"
+                        width="150" height="150">
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center">
+                    <h2>Description</h2>
+                </th>
+            </tr>
+            <tr>
+                <td class="fw-bold text-center">
+                    <div class="scrollable">
+                        {{book?.data.bookAbout}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center">
+                    <h2>Details</h2>
+                </th>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <table class="table" cellspacing="0" cellpadding="0" width="100%" class="fw-bold">
+                        <tr>
+                            <td align="right " style="width: 215px;">Author: {{book?.data.authorName}}</td>
+                            <td style="width: 20px;"></td>
+                            <td align="left" style="width: 215px;">Genre: {{book?.data.genreName}}</td>
+                        </tr>
+                        <tr>
+                            <td align="right " style="width: 215px;">Year: {{book?.data.bookPublishedYear}}</td>
+                            <td style="width: 20px;"></td>
+                            <td align="left" style="width: 215px;">Language: {{book?.data.bookLanguage}}</td>
+                        </tr>
+                        <tr>
+                            <td align="right " style="width: 215px;">Pages: {{book?.data.bookNumOfPages}}</td>
+                            <td style="width: 20px;"></td>
+                            <td align="left" style="width: 215px;"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div mat-dialog-action [align]="'center'" class="buttonCont mt-3">
+            <button class="btn btn-secondary" (click)=" borrowBook(book?.data,userId)">Borrow</button>
+            <button class="ms-4 btn btn-dark" (click)=" closeDialog()">Close</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+mat-form-field {
+  background-color: white;
+}
+
+.mat-column-bookId {
+  flex: 0 0 10%;
+}
+
+.mat-column-bookName {
+  flex: 0 0 25%;
+}
+
+.mat-column-authorName {
+  flex: 0 0 12%;
+}
+
+.mat-column-bookLanguage {
+  flex: 0 0 10%;
+}
+
+.mat-column-genreName {
+  flex: 0 0 10%;
+}
+
+.mat-column-bookPublishedYear {
+  flex: 0 0 5%;
+}
+
+.mat-column-bookNumOfPages {
+  flex: 0 0 5%;
+}
+
+.mat-column-bookCopys {
+  flex: 0 0 6%;
+}
+
+.row {
+  padding-bottom: 50px;
+}
+
+app-footer {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+}

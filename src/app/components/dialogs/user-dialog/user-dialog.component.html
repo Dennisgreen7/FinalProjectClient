@@ -1,0 +1,68 @@
+<form class="example-form" [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="ID" formControlName="usersId">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" formControlName="usersFirstName">
+        <mat-error *ngIf="userForm.get('usersFirstName')?.hasError('required')">*FirstName is required.</mat-error>
+        <mat-error *ngIf="userForm.get('usersFirstName')?.hasError('maxlength')">*FirstName Max length is up to 13.
+        </mat-error>
+        <mat-error *ngIf="userForm.get('usersFirstName')?.hasError('pattern')">*FirstName Must start with upper case and
+            alphabet.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" formControlName="usersLastName">
+        <mat-error *ngIf="userForm.get('usersLastName')?.hasError('required')">*LastName is required.</mat-error>
+        <mat-error *ngIf="userForm.get('usersLastName')?.hasError('maxlength')">*LastName Max length is up to 13.
+        </mat-error>
+        <mat-error *ngIf="userForm.get('usersLastName')?.hasError('pattern')">*LastName Must start with upper case and
+            alphabet.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>UserName</mat-label>
+        <input matInput placeholder="UserName" formControlName="usersUserName">
+        <mat-error *ngIf="userForm.get('usersUserName')?.hasError('required')">*UsertName is required.</mat-error>
+        <mat-error
+            *ngIf="userForm.get('usersUserName')?.hasError('minlength')||userForm.get('usersUserName')?.hasError('maxlength')">
+            *UserName length is Min 5 Max 11.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="text" matInput placeholder="Password" formControlName="usersPassword">
+        <mat-error *ngIf="userForm.get('usersPassword')?.hasError('required')">*Password is required.</mat-error>
+        <mat-error *ngIf="userForm.get('usersPassword')?.hasError('pattern')">*Password Length 8 and Maximum 16
+            character,Require at least
+            one(Lower Case,Upper Case,Digit).</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" formControlName="usersEmail">
+        <mat-error *ngIf="userForm.get('usersEmail')?.hasError('required')">*Email is required.</mat-error>
+        <mat-error *ngIf="userForm.get('usersEmail')?.hasError('pattern')">*Invalid Email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="usersRole" placeholder="Role">
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Client">Client</mat-option>
+        </mat-select>
+        <mat-error>*Role is required.</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-action [align]="'center'">
+        <button mat-raised-button color="primary">Save</button>
+        <button type="button" class="ms-4" mat-raised-button color="accent" (click)="closeDialog()">Close</button>
+    </div>
+</form>

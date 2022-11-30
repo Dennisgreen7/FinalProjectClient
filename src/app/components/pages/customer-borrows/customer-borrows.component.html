@@ -1,0 +1,81 @@
+<app-nav-bar [activeUser]="activeUser"></app-nav-bar>
+<div class="row">
+    <div class="col-12">
+        <table>
+            <tr>
+                <td align="left">
+                    <h1 class="fst-italic" [style.color]="headerColor">Borrows</h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="mat-elevation-z8">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput placeholder="Filter" (keyup)="filterChange($event)">
+            </mat-form-field>
+            <mat-table matSort [dataSource]="dataSource">
+
+                <ng-container matColumnDef="borrowingId">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> Id </mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null"
+                        *matCellDef="let element"> {{element.borrowingId}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="bookName">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef>Book</mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null"
+                        *matCellDef="let element"> {{element.bookName}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="userName">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> User </mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null"
+                        *matCellDef="let element"> {{element.userName}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="borrowingDate">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> Borrowing Date </mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null"
+                        *matCellDef="let element"> {{element.borrowingDate | date}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="borrowingReturnDate">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef>Return Date </mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null"
+                        *matCellDef="let element"> {{element.borrowingReturnDate | date}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="borrowingReturnedDate">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef>Returned Date </mat-header-cell>
+                    <mat-cell [class.borrow-ending]="element.daysLeft <= 1 && element.borrowingReturnedDate == null" *matCellDef="let element">
+                        {{element.borrowingReturnedDate | date}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button *ngIf="element.borrowingReturnedDate != null" mat-icon-button color="warn" [matTooltip]="'Delete'" [matTooltipPosition]="'above'"
+                        (click)="removeBorrow(element.borrowingId)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                        <button *ngIf="element.borrowingReturnedDate == null" mat-icon-button color="warn"
+                            [matTooltip]="'Return'" [matTooltipPosition]="'above'" (click)="returnBook(element)">
+                            <mat-icon>assignment_returned</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+
+            </mat-paginator>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

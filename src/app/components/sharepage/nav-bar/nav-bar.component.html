@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src={{logo}} alt="" width="30" height="24">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <div *ngIf="isAdmin" style="display:contents;">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/home" [routerLinkActive]="'choosen'">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/borrow-books" [routerLinkActive]="'choosen'">Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/about-us" [routerLinkActive]="'choosen'">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <span>Crud <i class="fa fa-duotone fa-caret-down"></i></span>
+                                    <div class="dropdown-content bg-dark">
+                                        <a class="nav-link dropdown-nav-item" routerLink="/authors"
+                                            [routerLinkActive]="'choosen'">Authors</a>
+                                        <a class="nav-link dropdown-nav-item" routerLink="/genres"
+                                            [routerLinkActive]="'choosen'">Genres</a>
+                                        <a class="nav-link dropdown-nav-item" routerLink="/books"
+                                            [routerLinkActive]="'choosen'">Books</a>
+                                        <a class="nav-link dropdown-nav-item" routerLink="/users"
+                                            [routerLinkActive]="'choosen'">Users</a>
+                                        <a class="nav-link dropdown-nav-item" routerLink="/borrows"
+                                            [routerLinkActive]="'choosen'">Borrows</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+                        <div *ngIf="!isAdmin" style="display:contents;">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/home" [routerLinkActive]="'choosen'">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/borrow-books" [routerLinkActive]="'choosen'">Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a *ngIf="isLogged" class="nav-link" routerLink="/cust-borrows"
+                                    [routerLinkActive]="'choosen'">Borrows</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/about-us" [routerLinkActive]="'choosen'">About Us</a>
+                            </li>
+                        </div>
+                    </ul>
+                    <div class="d-flex" role="search">
+                        <table>
+                            <tr>
+                                <td *ngIf="isLogged" id="welcome">
+                                    Welcome back {{this.activeUser?.usersFullName}}
+                                </td>
+                                <td>
+                                    <img src={{userImg?.data?.imageSrc}} class="rounded-circle" height="35px">
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td>
+                                    <button *ngIf="isLogged" (click)="logout()" class="btn btn-danger ">Logout</button>
+                                    <button *ngIf="!isLogged" (click)="login()" class="btn btn-login">Login</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<form class="example-form" [formGroup]="borrowForm" (ngSubmit)="saveBorrow()">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="ID" formControlName="borrowingId">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Book</mat-label>
+        <mat-select formControlName="borrowingBookId">
+            <mat-option *ngFor="let book of booksDb?.data" [value]="book.bookId">{{book.bookName}}</mat-option>
+        </mat-select>
+        <mat-error>*Book is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>User</mat-label>
+        <mat-select formControlName="borrowingUserId">
+            <mat-option *ngFor="let user of usersDb?.data" [value]="user.usersId">{{user.usersFirstName +"
+                "+user.usersLastName}}</mat-option>
+        </mat-select>
+        <mat-error>*User is required.</mat-error>
+    </mat-form-field>
+
+   <mat-form-field appearance="fill">
+        <mat-label>Borrowing Date</mat-label>
+        <input matInput placeholder="Borrowing Date" formControlName="borrowingDate">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Return Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="borrowingReturnDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>*Return date is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Returned Date</mat-label>
+        <input matInput type="text" placeholder="Returned Date" formControlName="borrowingReturnedDate">
+    </mat-form-field>
+
+    <div mat-dialog-action [align]="'center'">
+        <button mat-raised-button color="primary">Save</button>
+        <button type="button" class="ms-4" mat-raised-button color="accent" (click)="closeDialog()">Close</button>
+    </div>
+</form>

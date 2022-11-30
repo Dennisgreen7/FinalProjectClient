@@ -8,27 +8,42 @@ import { Book } from 'src/app/models/book';
 })
 export class BookService {
   private url: string = "Books";
+
   constructor(private http: HttpClient) { }
-  public getBooks(): Observable<Book[]> {
+
+  getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${environment.apiUrl}/${this.url}`);
   }
-  public updateBook(book: Book): Observable<Book[]> {
-    return this.http.put<Book[]>(
+
+  getBooksForBorrow(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${environment.apiUrl}/${this.url}/BooksForBorrow`);
+  }
+
+  getBook(id: number) {
+    return this.http.get<Book>(`${environment.apiUrl}/${this.url}/${id}`);
+  }
+
+  updateBook(book: Book): Observable<Book> {
+    return this.http.put<Book>(
       `${environment.apiUrl}/${this.url}/${book.bookId}`,
       book
     );
   }
 
-  public createBook(book: Book): Observable<Book[]> {
-    return this.http.post<Book[]>(
+  createBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(
       `${environment.apiUrl}/${this.url}`,
       book
     );
   }
 
-  public deleteBook(book: Book): Observable<Book[]> {
-    return this.http.delete<Book[]>(
-      `${environment.apiUrl}/${this.url}/${book.bookId}`
+  deleteBook(id: number): Observable<Book> {
+    return this.http.delete<Book>(
+      `${environment.apiUrl}/${this.url}/${id}`
     );
+  }
+
+  filterBooks(filterIndex: number, searchValue: string): Observable<Book[]> {
+    return this.http.get<Book[]>("https://localhost:7034/api/Books/FilterBooks/" + filterIndex + "?searchValue=" + searchValue);
   }
 }
